@@ -27,10 +27,7 @@ struct PokedexView: View {
                    .foregroundColor(.red)
            } else {
                SelectedPokemonView(selectedPokemon: selectedPokemon)
-               PokemonGridView(pokemons: pokemons)
-                   .onTapGesture {
-                       // Handle grid item selection here
-                   }
+               PokemonGridView(pokemons: pokemons, selectedPokemon: $selectedPokemon)
            }
 
        }
@@ -38,15 +35,6 @@ struct PokedexView: View {
            viewModel.fetchPokemonList(limit: 20, offset: 0)
        }
    }
-
-//    var body: some View {
-//        List(viewModel.pokemonList, id: \.name) { pokemon in
-//            Text(pokemon.name)
-//        }
-//        .onAppear {
-//            viewModel.fetchPokemonList(limit: 20, offset: 0)
-//        }
-//    }
 }
 
 
@@ -72,6 +60,7 @@ struct PokemonItemView: View {
 
 struct PokemonGridView: View {
     let pokemons: [PokemonListItem]
+    @Binding var selectedPokemon: PokemonListItem?
 
     var body: some View {
         ScrollView {
@@ -79,7 +68,7 @@ struct PokemonGridView: View {
                 ForEach(pokemons, id: \.name) { pokemon in
                     PokemonItemView(pokemon: pokemon)
                         .onTapGesture {
-                            // Handle selection here
+                            selectedPokemon = pokemon
                         }
                 }
             }

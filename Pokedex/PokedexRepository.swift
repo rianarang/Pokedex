@@ -34,7 +34,6 @@ class PokedexRepository {
             .collect()
             .eraseToAnyPublisher()
     }
-
 }
 
 // MARK: - PokemonListResponse
