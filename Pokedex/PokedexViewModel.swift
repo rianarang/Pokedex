@@ -8,11 +8,15 @@ class PokedexViewModel: ObservableObject {
 
     private let repository: PokedexRepository
     private var cancellables: Set<AnyCancellable> = []
+    
+    private var currentPage = 1
+    private let itemsPerPage = 20
 
     init(repository: PokedexRepository = PokedexRepository()) {
         self.repository = repository
     }
 
+    @MainActor
     func fetchPokemonList(limit: Int, offset: Int) {
         isLoading = true
 
@@ -30,5 +34,38 @@ class PokedexViewModel: ObservableObject {
                 self?.pokemonList = pokemonList
             })
             .store(in: &cancellables)
+    }
+    
+    @MainActor
+    func loadMoreData() {
+        guard !isLoading else { return }
+
+        isLoading = true
+        currentPage += 1
+
+        repository.fetchPokemonList(limit: itemsPerPage, offset: (currentPage - 1) * itemsPerPage)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                self?.isLoading = false
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.errorMessage = error.localizedDescription
+                }
+            }, receiveValue: { [weak self] newPokemonList in
+                if newPokemonList.isEmpty {
+                    // If the new list is empty, it means we've reached the end of the data
+                    // You can handle this case as per your app's requirements
+                } else {
+                    // Append new data to the existing list
+                    self?.pokemonList += newPokemonList
+                }
+            })
+            .store(in: &cancellables)
+    }
+    
+    func hasReachedEnd(of pokemon: PokemonListItem) -> Bool {
+        pokemonList.last?.url == pokemon.url
     }
 }

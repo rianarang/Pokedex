@@ -20,18 +20,19 @@ struct PokedexView: View {
     
    var body: some View {
        VStack {
-           if  viewModel.isLoading{
-               ProgressView("Loading...")
-           } else if let errorMessage = viewModel.errorMessage {
+           if let errorMessage = viewModel.errorMessage {
                Text(errorMessage)
                    .foregroundColor(.red)
            } else {
                SelectedPokemonView(selectedPokemon: selectedPokemon)
-               PokemonGridView(pokemons: pokemons, selectedPokemon: $selectedPokemon)
+               PokemonGridView(viewModel: viewModel, pokemons: pokemons, selectedPokemon: $selectedPokemon, loadMoreData: {
+                   viewModel.loadMoreData() // Call viewModel's loadMoreData function
+               })
            }
 
        }
        .onAppear {
+           // inital data fetching
            viewModel.fetchPokemonList(limit: 20, offset: 0)
        }
    }
@@ -59,8 +60,11 @@ struct PokemonItemView: View {
 // MARK: - PokemonGridView
 
 struct PokemonGridView: View {
+    let viewModel: PokedexViewModel
     let pokemons: [PokemonListItem]
     @Binding var selectedPokemon: PokemonListItem?
+    let loadMoreData: () -> Void
+    @State private var scrollToIndex: Int? = nil // Store the scroll offset
 
     var body: some View {
         ScrollView {
@@ -70,12 +74,26 @@ struct PokemonGridView: View {
                         .onTapGesture {
                             selectedPokemon = pokemon
                         }
+                        .task {
+                            if viewModel.hasReachedEnd(of: pokemon) && !viewModel.isLoading {
+                                viewModel.loadMoreData()
+                            }
+                        }
                 }
             }
             .padding()
+            .overlay(alignment: .bottom) {
+                if viewModel.isLoading {
+                    ProgressView()
+                }
+            }
         }
     }
+
 }
+
+
+
 
 // MARK: - SelectedPokemonView
 
