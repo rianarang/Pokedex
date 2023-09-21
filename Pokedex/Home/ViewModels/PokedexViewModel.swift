@@ -54,11 +54,8 @@ class PokedexViewModel: ObservableObject {
                     self?.errorMessage = error.localizedDescription
                 }
             }, receiveValue: { [weak self] newPokemonList in
-                if newPokemonList.isEmpty {
-                    // If the new list is empty, it means we've reached the end of the data
-                    // You can handle this case as per your app's requirements
-                } else {
-                    // Append new data to the existing list
+                if !newPokemonList.isEmpty {
+                    // append new data to existing list
                     self?.pokemonList += newPokemonList
                 }
             })
