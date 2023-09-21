@@ -8,17 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		DA0724DB2ABA9E7F00A6D170 /* PokedexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0724DA2ABA9E7F00A6D170 /* PokedexApp.swift */; };
-		DA0724DD2ABA9E7F00A6D170 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0724DC2ABA9E7F00A6D170 /* ContentView.swift */; };
+		DA0724DD2ABA9E7F00A6D170 /* PokedexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0724DC2ABA9E7F00A6D170 /* PokedexView.swift */; };
 		DA0724DF2ABA9E8000A6D170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA0724DE2ABA9E8000A6D170 /* Assets.xcassets */; };
 		DA0724E22ABA9E8000A6D170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA0724E12ABA9E8000A6D170 /* Preview Assets.xcassets */; };
+		DA0724E92ABAA01200A6D170 /* PokedexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0724E82ABAA01200A6D170 /* PokedexViewModel.swift */; };
+		DA0724EB2ABAA03900A6D170 /* PokedexViewStateMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0724EA2ABAA03900A6D170 /* PokedexViewStateMapper.swift */; };
+		DA0724ED2ABAA05D00A6D170 /* PokedexRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0724EC2ABAA05D00A6D170 /* PokedexRepository.swift */; };
+		DA0724F02ABAA6EC00A6D170 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = DA0724EF2ABAA6EC00A6D170 /* URLImage */; };
+		DA0724F22ABAA6EC00A6D170 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = DA0724F12ABAA6EC00A6D170 /* URLImageStore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DA0724D72ABA9E7F00A6D170 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0724DA2ABA9E7F00A6D170 /* PokedexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexApp.swift; sourceTree = "<group>"; };
-		DA0724DC2ABA9E7F00A6D170 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DA0724DC2ABA9E7F00A6D170 /* PokedexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexView.swift; sourceTree = "<group>"; };
 		DA0724DE2ABA9E8000A6D170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA0724E12ABA9E8000A6D170 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DA0724E82ABAA01200A6D170 /* PokedexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexViewModel.swift; sourceTree = "<group>"; };
+		DA0724EA2ABAA03900A6D170 /* PokedexViewStateMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexViewStateMapper.swift; sourceTree = "<group>"; };
+		DA0724EC2ABAA05D00A6D170 /* PokedexRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +34,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA0724F22ABAA6EC00A6D170 /* URLImageStore in Frameworks */,
+				DA0724F02ABAA6EC00A6D170 /* URLImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,9 +62,12 @@
 			isa = PBXGroup;
 			children = (
 				DA0724DA2ABA9E7F00A6D170 /* PokedexApp.swift */,
-				DA0724DC2ABA9E7F00A6D170 /* ContentView.swift */,
+				DA0724DC2ABA9E7F00A6D170 /* PokedexView.swift */,
+				DA0724E82ABAA01200A6D170 /* PokedexViewModel.swift */,
 				DA0724DE2ABA9E8000A6D170 /* Assets.xcassets */,
 				DA0724E02ABA9E8000A6D170 /* Preview Content */,
+				DA0724EA2ABAA03900A6D170 /* PokedexViewStateMapper.swift */,
+				DA0724EC2ABAA05D00A6D170 /* PokedexRepository.swift */,
 			);
 			path = Pokedex;
 			sourceTree = "<group>";
@@ -83,6 +96,10 @@
 			dependencies = (
 			);
 			name = Pokedex;
+			packageProductDependencies = (
+				DA0724EF2ABAA6EC00A6D170 /* URLImage */,
+				DA0724F12ABAA6EC00A6D170 /* URLImageStore */,
+			);
 			productName = Pokedex;
 			productReference = DA0724D72ABA9E7F00A6D170 /* Pokedex.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +128,9 @@
 				Base,
 			);
 			mainGroup = DA0724CE2ABA9E7F00A6D170;
+			packageReferences = (
+				DA0724EE2ABAA6EC00A6D170 /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = DA0724D82ABA9E7F00A6D170 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +157,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA0724DD2ABA9E7F00A6D170 /* ContentView.swift in Sources */,
+				DA0724EB2ABAA03900A6D170 /* PokedexViewStateMapper.swift in Sources */,
+				DA0724E92ABAA01200A6D170 /* PokedexViewModel.swift in Sources */,
+				DA0724DD2ABA9E7F00A6D170 /* PokedexView.swift in Sources */,
 				DA0724DB2ABA9E7F00A6D170 /* PokedexApp.swift in Sources */,
+				DA0724ED2ABAA05D00A6D170 /* PokedexRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +362,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DA0724EE2ABAA6EC00A6D170 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DA0724EF2ABAA6EC00A6D170 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA0724EE2ABAA6EC00A6D170 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		DA0724F12ABAA6EC00A6D170 /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA0724EE2ABAA6EC00A6D170 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DA0724CF2ABA9E7F00A6D170 /* Project object */;
 }
